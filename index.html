@@ -132,7 +132,7 @@ footer p{font-size:13px;color:rgba(255,255,255,.35);}
 </main>
 <footer><p>Этот ресурс предназначен исключительно для сотрудников компании • Все вакансии актуальны в режиме реального времени</p></footer>
 <script>
-const API='https://script.google.com/macros/s/AKfycbwyPIpwsQvFKY803J-o6JIo7vmNZMCysK5Nu1DiI8E5l7DTR_GLqU1bfwGkiF5WHdS6/exec';
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbzsxs4ZqbB-kFqawdfNGb-YjzMySRHQyYUCuDd-99NDYy6dW6836cDChIp65MkSoG4p/exec';
 const EX={noExperience:'Без опыта',between1And3:'1–3 года',between3And6:'3–6 лет',moreThan6:'Более 6 лет'};
 const SC={fullDay:'Полный день',shift:'Сменный график',flexible:'Гибкий график',remote:'Удалённая работа',flyInFlyOut:'Вахтовый метод'};
 let all=[];
@@ -157,6 +157,7 @@ function mk(v,i){
     +(desc?'<div class="desc">'+e(desc)+'</div>':'')
     +'<div class="foot"><div class="dt">'+(dt?'Опубликовано '+e(dt):'')+'</div></div></div>';
 }
+function showError(){g('ld').style.display='none';g('er').style.display='block';}
 function render(){
   const q=g('q').value.toLowerCase().trim(),c=g('city').value,ex=g('exp').value;
   const f=all.filter(v=>(!q||v.name.toLowerCase().includes(q))&&(!c||v.area?.name===c)&&(!ex||v.experience?.id===ex));
@@ -164,26 +165,38 @@ function render(){
     :'<div class="empty"><div class="empty-icon">🔍</div><h3>Вакансии не найдены</h3><p>Попробуйте изменить параметры поиска.</p></div>';
   g('cnt').innerHTML='Найдено: <strong>'+f.length+'</strong> из '+all.length;
 }
-async function load(){
-  try{
-    const r=await fetch(API);
-    if(!r.ok)throw new Error(r.status);
-    const data=await r.json();
-    if(!data?.items)throw new Error('no items');
-    all=data.items;
-    const cities=[...new Set(all.map(v=>v.area?.name).filter(Boolean))].sort();
-    const sel=g('city');
-    cities.forEach(c=>{const o=document.createElement('option');o.value=o.textContent=c;sel.appendChild(o);});
-    g('ld').style.display='none';g('gr').style.display='grid';render();
-    g('q').addEventListener('input',render);
-    g('city').addEventListener('change',render);
-    g('exp').addEventListener('change',render);
-  }catch(er){
-    console.error(er);
-    g('ld').style.display='none';g('er').style.display='block';
-  }
+function processData(data){
+  if(!data||!data.items){showError();return;}
+  all=data.items;
+  const cities=[...new Set(all.map(v=>v.area?.name).filter(Boolean))].sort();
+  const sel=g('city');
+  cities.forEach(c=>{const o=document.createElement('option');o.value=o.textContent=c;sel.appendChild(o);});
+  g('ld').style.display='none';g('gr').style.display='grid';render();
+  g('q').addEventListener('input',render);
+  g('city').addEventListener('change',render);
+  g('exp').addEventListener('change',render);
+}
+function load(){
+  // JSONP — обходит все ограничения браузера
+  const cbName='_cb'+Date.now();
+  const timeout=setTimeout(()=>{
+    delete window[cbName];
+    if(tag.parentNode)tag.parentNode.removeChild(tag);
+    showError();
+  },15000);
+  window[cbName]=function(data){
+    clearTimeout(timeout);
+    delete window[cbName];
+    if(tag.parentNode)tag.parentNode.removeChild(tag);
+    processData(data);
+  };
+  const tag=document.createElement('script');
+  tag.onerror=function(){clearTimeout(timeout);delete window[cbName];showError();};
+  tag.src=SCRIPT_URL+'?callback='+cbName;
+  document.head.appendChild(tag);
 }
 load();
 </script>
 </body>
 </html>
+
