@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Карьера внутри компании — Открытые вакансии</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--burg:#7B2D42;--burg2:#9B3D54;--burgpale:#F5ECF0;--cream:#FAF7F4;--white:#FFF;--dark:#2C2827;--gray:#8A7F7A;--bord:#E8DDD8;--gold:#C4965A;--sh:rgba(123,45,66,0.12);}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Raleway',sans-serif;background:var(--cream);color:var(--dark);min-height:100vh;}
+header{background:var(--dark);position:sticky;top:0;z-index:100;box-shadow:0 2px 20px rgba(0,0,0,.25);}
+.hi{max-width:1200px;margin:0 auto;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;}
+.logo{font-family:'Playfair Display',serif;font-size:22px;font-weight:700;color:#fff;}
+.logo span{color:var(--gold);}
+.sub{font-size:13px;font-weight:300;color:rgba(255,255,255,.5);letter-spacing:.08em;text-transform:uppercase;}
+.hero{background:linear-gradient(135deg,var(--dark) 0%,#4A2030 50%,var(--burg) 100%);color:#fff;padding:90px 40px 80px;text-align:center;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-50%;left:-20%;width:60%;height:200%;background:radial-gradient(ellipse,rgba(196,150,90,.15) 0%,transparent 70%);}
+.hero::after{content:'';position:absolute;bottom:-30%;right:-10%;width:50%;height:150%;background:radial-gradient(ellipse,rgba(123,45,66,.3) 0%,transparent 70%);}
+.ey{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:20px;position:relative;z-index:1;}
+h1{font-family:'Playfair Display',serif;font-size:clamp(34px,5vw,58px);font-weight:700;line-height:1.15;margin-bottom:22px;position:relative;z-index:1;max-width:700px;margin-left:auto;margin-right:auto;}
+.hp{font-size:17px;font-weight:300;line-height:1.7;opacity:.85;max-width:560px;margin:0 auto 36px;position:relative;z-index:1;}
+.cta{display:inline-block;background:var(--gold);color:var(--dark);padding:14px 36px;border-radius:2px;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;text-decoration:none;transition:all .25s;position:relative;z-index:1;}
+.cta:hover{background:#D4A66A;transform:translateY(-1px);}
+.ctrl{background:var(--white);border-bottom:1px solid var(--bord);padding:24px 40px;position:sticky;top:65px;z-index:90;box-shadow:0 2px 12px rgba(0,0,0,.05);}
+.ci{max-width:1200px;margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap;}
+.sb{flex:1;min-width:240px;position:relative;}
+.sb input{width:100%;padding:12px 18px 12px 46px;border:1.5px solid var(--bord);border-radius:4px;font-family:'Raleway',sans-serif;font-size:14px;color:var(--dark);background:var(--cream);transition:border-color .2s;outline:none;}
+.sb input:focus{border-color:var(--burg);background:#fff;}
+.si{position:absolute;left:15px;top:50%;transform:translateY(-50%);color:var(--gray);pointer-events:none;}
+select{padding:12px 36px 12px 18px;border:1.5px solid var(--bord);border-radius:4px;font-family:'Raleway',sans-serif;font-size:14px;color:var(--dark);background:var(--cream);cursor:pointer;outline:none;min-width:180px;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%238A7F7A' stroke-width='1.5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;}
+select:focus{border-color:var(--burg);}
+.vc{font-size:13px;color:var(--gray);white-space:nowrap;margin-left:auto;}
+.vc strong{color:var(--burg);font-weight:600;}
+main{max-width:1200px;margin:0 auto;padding:50px 40px 80px;}
+.load{text-align:center;padding:80px 20px;}
+.spin{width:44px;height:44px;border:3px solid var(--bord);border-top-color:var(--burg);border-radius:50%;animation:sp .8s linear infinite;margin:0 auto 20px;}
+@keyframes sp{to{transform:rotate(360deg)}}
+.load p{color:var(--gray);font-size:15px;}
+.err{text-align:center;padding:60px 20px;display:none;}
+.err-icon{font-size:48px;margin-bottom:16px;}
+.err h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:10px;color:var(--burg);}
+.err p{color:var(--gray);font-size:15px;line-height:1.6;}
+.grid{display:none;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:24px;}
+.card{background:var(--white);border:1px solid var(--bord);border-radius:6px;padding:30px;transition:all .25s;position:relative;overflow:hidden;animation:fu .5s ease both;}
+@keyframes fu{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+.card::before{content:'';position:absolute;top:0;left:0;width:4px;height:100%;background:var(--burg);transform:scaleY(0);transform-origin:bottom;transition:transform .25s;}
+.card:hover{border-color:var(--burg2);box-shadow:0 8px 32px var(--sh);transform:translateY(-3px);}
+.card:hover::before{transform:scaleY(1);}
+.tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--burg);background:var(--burgpale);padding:4px 10px;border-radius:2px;margin-bottom:14px;}
+.title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;color:var(--dark);line-height:1.35;margin-bottom:12px;}
+.meta{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;}
+.mi{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--gray);}
+.sal{font-size:15px;font-weight:600;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:6px;}
+.desc{font-size:13.5px;color:#6B6360;line-height:1.65;margin-bottom:20px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
+.foot{display:flex;align-items:center;justify-content:space-between;padding-top:18px;border-top:1px solid var(--bord);}
+.dt{font-size:12px;color:var(--gray);}
+.empty{grid-column:1/-1;text-align:center;padding:60px 20px;}
+.empty-icon{font-size:48px;margin-bottom:16px;}
+.empty h3{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:10px;}
+.empty p{color:var(--gray);font-size:15px;}
+.banner{background:linear-gradient(120deg,var(--dark) 0%,#3D1F2B 100%);border-radius:8px;padding:48px 56px;margin-top:60px;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap;position:relative;overflow:hidden;}
+.banner::before{content:'✦';position:absolute;right:56px;top:50%;transform:translateY(-50%);font-size:120px;color:rgba(196,150,90,.08);pointer-events:none;}
+.bl h2{font-family:'Playfair Display',serif;font-size:28px;color:#fff;margin-bottom:12px;}
+.bl p{font-size:15px;color:rgba(255,255,255,.65);line-height:1.6;max-width:500px;}
+.bcards{display:flex;gap:16px;flex-wrap:wrap;flex-shrink:0;}
+.bc{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:6px;padding:18px 24px;min-width:200px;}
+.bcl{font-size:10px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);margin-bottom:8px;}
+.bcv{font-size:14px;color:#fff;line-height:1.5;}
+.bcv a{color:#fff;text-decoration:none;}
+.bcv a:hover{color:var(--gold);}
+footer{background:var(--dark);padding:28px 40px;text-align:center;}
+footer p{font-size:13px;color:rgba(255,255,255,.35);}
+.sd{display:flex;align-items:center;gap:20px;margin-bottom:40px;}
+.sd h2{font-family:'Playfair Display',serif;font-size:26px;font-weight:600;color:var(--dark);white-space:nowrap;}
+.dl{flex:1;height:1px;background:linear-gradient(90deg,var(--bord),transparent);}
+@media(max-width:768px){
+  .hi{padding:16px 20px;}.sub{display:none;}
+  .hero{padding:60px 20px 50px;}.ctrl{padding:16px 20px;top:57px;}
+  .ci{gap:10px;}.sb{min-width:100%;}
+  select{min-width:calc(50% - 5px);flex:1;}main{padding:30px 20px 60px;}
+  .grid{grid-template-columns:1fr;gap:16px;}
+  .banner{padding:32px 28px;flex-direction:column;}
+  .banner::before{display:none;}.bcards{width:100%;}
+  .bc{min-width:0;flex:1;}
+}
+@media(max-width:480px){.bcards{flex-direction:column;}}
+</style>
+</head>
+<body>
+<header><div class="hi"><div class="logo">Карьера <span>внутри компании</span></div><div class="sub">Внутренние возможности</div></div></header>
+<section class="hero">
+  <div class="ey">Только для сотрудников компании</div>
+  <h1>Развивайте карьеру<br>вместе с нами</h1>
+  <p class="hp">Здесь собраны все открытые вакансии нашей компании. Внутренние переходы — это ваш шанс открыть новые горизонты, не меняя работодателя.</p>
+  <a href="#vac" class="cta">Смотреть вакансии</a>
+</section>
+<div class="ctrl"><div class="ci">
+  <div class="sb">
+    <svg class="si" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+    <input type="text" id="q" placeholder="Поиск по названию вакансии...">
+  </div>
+  <select id="city"><option value="">Все города</option></select>
+  <select id="exp">
+    <option value="">Опыт: любой</option>
+    <option value="noExperience">Без опыта</option>
+    <option value="between1And3">1–3 года</option>
+    <option value="between3And6">3–6 лет</option>
+    <option value="moreThan6">Более 6 лет</option>
+  </select>
+  <div class="vc" id="cnt"></div>
+</div></div>
+<main id="vac">
+  <div class="sd"><h2>Открытые вакансии</h2><div class="dl"></div></div>
+  <div class="load" id="ld"><div class="spin"></div><p>Загружаем актуальные вакансии…</p></div>
+  <div class="err" id="er">
+    <div class="err-icon">⚠️</div>
+    <h3>Не удалось загрузить вакансии</h3>
+    <p>Обновите страницу или напишите на <a href="mailto:podbor@eksmo.ru" style="color:var(--burg)">podbor@eksmo.ru</a></p>
+  </div>
+  <div class="grid" id="gr"></div>
+  <div class="banner">
+    <div class="bl">
+      <h2>Готовы сделать следующий шаг?</h2>
+      <p>Откликнуться на вакансию просто — напишите нам на почту, и мы свяжемся с вами в течение рабочего дня. По всем вопросам о внутренних переходах обращайтесь к нашему HR-менеджеру.</p>
+    </div>
+    <div class="bcards">
+      <div class="bc"><div class="bcl">Откликнуться</div><div class="bcv"><a href="mailto:podbor@eksmo.ru">podbor@eksmo.ru</a></div></div>
+      <div class="bc"><div class="bcl">HR-менеджер</div><div class="bcv">Пирогова Клавдия<br><a href="mailto:pirogova.ka@eksmo.ru">pirogova.ka@eksmo.ru</a></div></div>
+    </div>
+  </div>
+</main>
+<footer><p>Этот ресурс предназначен исключительно для сотрудников компании • Все вакансии актуальны в режиме реального времени</p></footer>
+<script>
+const API='https://api.hh.ru/vacancies?employer_id=2292&per_page=50&locale=RU';
+const PX=[
+  ()=>'https://corsproxy.io/?url='+encodeURIComponent(API),
+  ()=>'https://api.allorigins.win/raw?url='+encodeURIComponent(API),
+  ()=>'https://api.codetabs.com/v1/proxy?quest='+encodeURIComponent(API),
+];
+const EX={noExperience:'Без опыта',between1And3:'1–3 года',between3And6:'3–6 лет',moreThan6:'Более 6 лет'};
+const SC={fullDay:'Полный день',shift:'Сменный график',flexible:'Гибкий график',remote:'Удалённая работа',flyInFlyOut:'Вахтовый метод'};
+let all=[];
+const g=id=>document.getElementById(id);
+function e(s){return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');}
+function sh(h){return h?h.replace(/<[^>]*>/g,' ').replace(/\s+/g,' ').trim():'';}
+function fs(s){if(!s)return null;const f=n=>n?n.toLocaleString('ru-RU'):null,fr=f(s.from),to=f(s.to),c=s.currency==='RUR'?'₽':s.currency;return fr&&to?fr+' – '+to+' '+c:fr?'от '+fr+' '+c:to?'до '+to+' '+c:null;}
+function fd(d){return d?new Date(d).toLocaleDateString('ru-RU',{day:'numeric',month:'long',year:'numeric'}):''}
+function ic(p){return'<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">'+p+'</svg>';}
+function mk(v,i){
+  const sal=fs(v.salary),city=v.area?.name||'',ex=EX[v.experience?.id]||'',sc=SC[v.schedule?.id]||'';
+  const desc=sh(v.snippet?.requirement||v.snippet?.responsibility||''),dt=fd(v.published_at);
+  const role=v.professional_roles?.[0]?.name||'Вакансия';
+  return'<div class="card" style="animation-delay:'+i*0.05+'s">'
+    +'<div class="tag">'+e(role)+'</div><div class="title">'+e(v.name)+'</div>'
+    +'<div class="meta">'
+    +(city?'<div class="mi">'+ic('<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>')+' '+e(city)+'</div>':'')
+    +(ex?'<div class="mi">'+ic('<rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/>')+' '+e(ex)+'</div>':'')
+    +(sc?'<div class="mi">'+ic('<circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>')+' '+e(sc)+'</div>':'')
+    +'</div>'
+    +(sal?'<div class="sal">'+ic('<line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>')+' '+e(sal)+'</div>':'')
+    +(desc?'<div class="desc">'+e(desc)+'</div>':'')
+    +'<div class="foot"><div class="dt">'+(dt?'Опубликовано '+e(dt):'')+'</div></div></div>';
+}
+function render(){
+  const q=g('q').value.toLowerCase().trim(),c=g('city').value,ex=g('exp').value;
+  const f=all.filter(v=>(!q||v.name.toLowerCase().includes(q))&&(!c||v.area?.name===c)&&(!ex||v.experience?.id===ex));
+  g('gr').innerHTML=f.length?f.map((v,i)=>mk(v,i)).join('')
+    :'<div class="empty"><div class="empty-icon">🔍</div><h3>Вакансии не найдены</h3><p>Попробуйте изменить параметры поиска.</p></div>';
+  g('cnt').innerHTML='Найдено: <strong>'+f.length+'</strong> из '+all.length;
+}
+async function tryP(fn){
+  const r=await fetch(fn(),{signal:AbortSignal.timeout(10000)});
+  if(!r.ok)throw new Error(r.status);
+  const d=await r.json();
+  return typeof d.contents==='string'?JSON.parse(d.contents):d;
+}
+async function load(){
+  let data=null;
+  for(const p of PX){try{data=await tryP(p);if(data?.items)break;}catch(er){console.warn('proxy:',er.message);}}
+  if(!data?.items){g('ld').style.display='none';g('er').style.display='block';return;}
+  all=data.items;
+  const cities=[...new Set(all.map(v=>v.area?.name).filter(Boolean))].sort();
+  const sel=g('city');
+  cities.forEach(c=>{const o=document.createElement('option');o.value=o.textContent=c;sel.appendChild(o);});
+  g('ld').style.display='none';g('gr').style.display='grid';render();
+  g('q').addEventListener('input',render);
+  g('city').addEventListener('change',render);
+  g('exp').addEventListener('change',render);
+}
+load();
+</script>
+</body>
+</html>
